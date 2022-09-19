@@ -1,0 +1,38 @@
+﻿Sub Magat()
+
+
+Dim LR As Integer
+Dim ws As Worksheet
+Dim x As Integer
+Dim i As Integer
+
+
+
+LR = Cells(Rows.Count, 1).End(xlUp).Row
+
+
+    'For i = 9 To 32
+
+    'Worksheets("Summary").Cells(i, 2).Value = Worksheets
+
+    'Next i
+    
+    x = 1
+
+    For Each ws In Worksheets
+        Sheets("Summary").Cells(x, 1).Value = ws.Name
+        Sheets("Summary").Cells(x, 1).NumberFormat = "00000"
+        x = x + 1
+    Next ws
+    
+    i = 0
+    
+    For Each ws In Worksheets
+        Sheets(
+    Next ws
+    
+    
+
+
+End Sub
+
