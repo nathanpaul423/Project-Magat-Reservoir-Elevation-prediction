@@ -6,46 +6,42 @@ Dim ws As Worksheet
 Dim x As Integer
 Dim i As Integer
 
-    LR = Cells(Rows.Count, 1).End(xlUp).Row
+    
 
+
+    LR = Cells(Rows.Count, 1).End(xlUp).Row
 
     'For i = 9 To 32
     'Worksheets("Summary").Cells(i, 2).Value = Worksheets
     'Next i
-    
+
     x = 1
     ActiveSheet.Range("A:A").NumberFormat = "@"
-    
+
     'listing name of worksheets
     For Each ws In Worksheets
         Sheets("Summary").Cells(x, 1).Value = ws.Name
         Sheets("Summary").Cells(x, 1).NumberFormat = "@"
         x = x + 1
     Next ws
-    
+
     i = 0
-    
+
     Sheets("Summary").Select
-    
+
     LR = Cells(Rows.Count, 1).End(xlUp).Row
-    
-    
+
     For i = 2 To LR
         t = Cells(i, 1).Value
         Sheets(t).Select
-        
         'insert loop for copying row values to summary table
         For j = 9 To 32
             LR1 = Sheets("Summary").Cells(Rows.Count, 2).End(xlUp).Row
             Sheets("Summary").Cells(LR1 + 1, 2).Value = Sheets(t).Cells(j, 2).Value
-            
+            Sheets("Summary").Cells(LR1 + 1, 3).Value = Sheets(t).Cells(j, 4).Value
+            Sheets("Summary").Cells(LR1 + 1, 4).Value = Sheets(t).Cells(j, 8).Value
+            Sheets("Summary").Cells(LR1 + 1, 5).Value = Sheets(t).Cells(j, 32).Value
         Next j
-        
-        
     Next i
-    
-    
-
-
 End Sub
 
