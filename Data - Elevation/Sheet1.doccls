@@ -5,7 +5,14 @@ Dim LR1 As Integer
 Dim ws As Worksheet
 Dim x As Integer
 Dim i As Integer
-
+    
+    Sheets.Add(Before:=Sheets(1)).Name = "Summary"
+    Sheets("Summary").Select
+    
+    Sheets("Summary").Cells(1, 2).Value = "Elevation"
+    Sheets("Summary").Cells(1, 3).Value = "Inflow"
+    Sheets("Summary").Cells(1, 4).Value = "Outflow"
+    Sheets("Summary").Cells(1, 5).Value = "AvgRainFall"
     
 
 
@@ -16,7 +23,8 @@ Dim i As Integer
     'Next i
 
     x = 1
-    ActiveSheet.Range("A:A").NumberFormat = "@"
+    'Ensures range is in the right format
+    Sheets("Summary").Range("A:A").NumberFormat = "@"
 
     'listing name of worksheets
     For Each ws In Worksheets
@@ -32,16 +40,21 @@ Dim i As Integer
     LR = Cells(Rows.Count, 1).End(xlUp).Row
 
     For i = 2 To LR
-        t = Cells(i, 1).Value
-        Sheets(t).Select
+        t = Sheets("Summary").Cells(i, 1).Value
         'insert loop for copying row values to summary table
         For j = 9 To 32
             LR1 = Sheets("Summary").Cells(Rows.Count, 2).End(xlUp).Row
             Sheets("Summary").Cells(LR1 + 1, 2).Value = Sheets(t).Cells(j, 2).Value
             Sheets("Summary").Cells(LR1 + 1, 3).Value = Sheets(t).Cells(j, 4).Value
             Sheets("Summary").Cells(LR1 + 1, 4).Value = Sheets(t).Cells(j, 8).Value
-            Sheets("Summary").Cells(LR1 + 1, 5).Value = Sheets(t).Cells(j, 32).Value
+            Sheets("Summary").Cells(LR1 + 1, 5).Value = Sheets(t).Cells(j, 33).Value
         Next j
+        
     Next i
+    
+    Sheets("Summary").Select
+    Sheets("Summary").Range("A:A").Delete
+    
+    
 End Sub
 
