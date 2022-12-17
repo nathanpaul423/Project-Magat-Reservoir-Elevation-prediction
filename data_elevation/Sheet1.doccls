@@ -1,4 +1,13 @@
-﻿Sub Magat()
+VERSION 1.0 CLASS
+BEGIN
+  MultiUse = -1  'True
+END
+Attribute VB_Name = "Sheet1"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = True
+Sub Magat()
 
 Dim LR As Integer
 Dim LR1 As Integer
@@ -9,10 +18,12 @@ Dim i As Integer
     Sheets.Add(Before:=Sheets(1)).Name = "Summary"
     Sheets("Summary").Select
     
-    Sheets("Summary").Cells(1, 2).Value = "Elevation"
-    Sheets("Summary").Cells(1, 3).Value = "Inflow"
-    Sheets("Summary").Cells(1, 4).Value = "Outflow"
-    Sheets("Summary").Cells(1, 5).Value = "AvgRainFall"
+    Sheets("Summary").Cells(1, 2).Value = "TimeLine_date"
+    Sheets("Summary").Cells(1, 3).Value = "TimeLine_time"
+    Sheets("Summary").Cells(1, 4).Value = "Elevation"
+    Sheets("Summary").Cells(1, 5).Value = "Inflow"
+    Sheets("Summary").Cells(1, 6).Value = "Outflow"
+    Sheets("Summary").Cells(1, 7).Value = "AvgRainFall"
     
 
 
@@ -44,10 +55,13 @@ Dim i As Integer
         'insert loop for copying row values to summary table
         For j = 9 To 32
             LR1 = Sheets("Summary").Cells(Rows.Count, 2).End(xlUp).Row
-            Sheets("Summary").Cells(LR1 + 1, 2).Value = Sheets(t).Cells(j, 2).Value
-            Sheets("Summary").Cells(LR1 + 1, 3).Value = Sheets(t).Cells(j, 4).Value
-            Sheets("Summary").Cells(LR1 + 1, 4).Value = Sheets(t).Cells(j, 8).Value
-            Sheets("Summary").Cells(LR1 + 1, 5).Value = Sheets(t).Cells(j, 33).Value
+            'to be continued
+            Sheets("Summary").Cells(LR1 + 1, 2).Value = Sheets(t).Name
+            Sheets("Summary").Cells(LR1 + 1, 2).Value = Sheets(t).Cells(j, 1).Value
+            Sheets("Summary").Cells(LR1 + 1, 3).Value = Sheets(t).Cells(j, 2).Value
+            Sheets("Summary").Cells(LR1 + 1, 4).Value = Sheets(t).Cells(j, 4).Value
+            Sheets("Summary").Cells(LR1 + 1, 5).Value = Sheets(t).Cells(j, 8).Value
+            Sheets("Summary").Cells(LR1 + 1, 6).Value = Sheets(t).Cells(j, 33).Value
         Next j
         
     Next i
@@ -57,4 +71,5 @@ Dim i As Integer
     
     
 End Sub
+
 
