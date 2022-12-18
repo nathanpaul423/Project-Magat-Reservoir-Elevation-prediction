@@ -10,10 +10,10 @@ wb = xl.Workbooks.Open(os.path.abspath(r"C:\Users\Tokwa\Documents\GitHub\Project
 
 # Add a new module
 module = wb.VBProject.VBComponents.Add(1)  # 1 stands for a module
-
+#
 module.CodeModule.AddFromFile(text_file)
 
-module.CodeModule.Execute()
+xl.Application.Run("Magat")
 
 # Save the workbook
 wb.Save()
