@@ -1,4 +1,4 @@
-Attribute VB_Name = "Module2"
+Attribute VB_Name = "Module1"
 Sub AccessMultipleWorkbooks()
     Dim wb As Workbook
     Dim ws As Worksheet
@@ -46,6 +46,14 @@ Sub AccessMultipleWorkbooks()
             
         For Each ws In wb.Worksheets
                 'insert loop for copying row values to summary table
+                
+                  ' this was added as some sheet placed the avg. rainfall to column index 31
+                    If ws.Cells(7, 32).Value = "AVERAGE RAINFALL" Then
+                        num = 32
+                    Else
+                        num = 31
+                    End If
+                    
                 For j = 9 To 32
                     LR1 = wbactive.Sheets("Summary").Cells(Rows.Count, 2).End(xlUp).Row
                     
@@ -56,7 +64,7 @@ Sub AccessMultipleWorkbooks()
                     wbactive.Sheets("Summary").Cells(LR1 + 1, 5).Value = ws.Cells(j, 3).Value 'Volume
                     wbactive.Sheets("Summary").Cells(LR1 + 1, 6).Value = ws.Cells(j, 4).Value 'inflow
                     wbactive.Sheets("Summary").Cells(LR1 + 1, 7).Value = ws.Cells(j, 8).Value 'total outflow
-                    wbactive.Sheets("Summary").Cells(LR1 + 1, 8).Value = ws.Cells(j, 32).Value 'avgrainfall
+                    wbactive.Sheets("Summary").Cells(LR1 + 1, 8).Value = ws.Cells(j, num).Value 'avgrainfall
                 Next j
             
         Next ws
@@ -64,8 +72,4 @@ Sub AccessMultipleWorkbooks()
     fileName = Dir
     Loop
     
-    wbactive.Columns("C:C").Select
-    Selection.NumberFormat = "[$-F400]h:mm:ss am/pm"
-
 End Sub
-
